@@ -20,6 +20,9 @@ func NewCarloGavazziEx3xProducer() Producer {
 		VoltageL1: 0x00,
 		VoltageL2: 0x02,
 		VoltageL3: 0x04,
+		//VoltageL1L2: 0x06,
+		//VoltageL2L3: 0x08,
+		//VoltageL3L1: 0x0A,
 		CurrentL1: 0x0C,
 		CurrentL2: 0x0E,
 		CurrentL3: 0x10,
@@ -27,6 +30,16 @@ func NewCarloGavazziEx3xProducer() Producer {
 		PowerL2:   0x14,
 		PowerL3:   0x16,
 		Power:     0x28,
+		ApparentPowerL1: 0x18,
+		ApparentPowerL2: 0x1A,
+		ApparentPowerL3: 0x1C,
+		ApparentPower: 0x2A,
+		ReactivePowerL1: 0x1E,
+		ReactivePowerL2: 0x20,
+		ReactivePowerL3: 0x22,
+		ReactivePower: 0x2C,
+		ReactiveExport: 0x50,
+		ReactiveImport: 0x36,
 		CosphiL1:  0x2E,
 		CosphiL2:  0x2F,
 		CosphiL3:  0x30,
@@ -37,13 +50,14 @@ func NewCarloGavazziEx3xProducer() Producer {
 		ImportL2:  0x42,
 		ImportL3:  0x44,
 		Export:    0x4E,
+		PhaseAngle: 0x32,
 	}
 	return &CarloGavazziEx3xProducer{Opcodes: ops}
 }
 
 // Description implements Producer interface
 func (p *CarloGavazziEx3xProducer) Description() string {
-	return "Carlo Gavazzi EM/ET 330/340"
+	return "Carlo Gavazzi EM/ET 330/340 + EM24 Ethernet"
 }
 
 func (p *CarloGavazziEx3xProducer) snip16(iec Measurement, scaler ...float64) Operation {
